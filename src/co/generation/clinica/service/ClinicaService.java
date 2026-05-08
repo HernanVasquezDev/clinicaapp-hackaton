@@ -17,15 +17,15 @@ public class ClinicaService implements Consultable {
     }
 
     private int generarIdMedico(){
-        return pacientes.stream()
-                .mapToInt(Paciente::getId)
+        return medicos.stream()
+                .mapToInt(Medico::getId)
                 .max()
                 .orElse(0) + 1;
     }
 
     private int generarIdTurno(){
-        return pacientes.stream()
-                .mapToInt(Paciente::getId)
+        return turnos.stream()
+                .mapToInt(Turno::getId)
                 .max()
                 .orElse(0) + 1;
     }

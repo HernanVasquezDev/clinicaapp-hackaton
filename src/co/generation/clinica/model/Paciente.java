@@ -84,8 +84,8 @@ public class Paciente implements Registrable {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (!(obj instanceof Paciente)) return false;
-        Paciente otro = (Paciente) obj;
-        return this.cedula.equals(otro.cedula);
+        Paciente other = (Paciente) obj;
+        return this.cedula.equals(other.cedula);
     }
 
     @Override
