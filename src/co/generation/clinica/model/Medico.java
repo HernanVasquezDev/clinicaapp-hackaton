@@ -9,6 +9,12 @@ public class Medico implements Registrable {
     private String apellido;
     private Especialidad especialidad;
 
+    public Medico(int i, String nombre, String apellido, Especialidad especialidad) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.especialidad = especialidad;
+    }
+
     public Medico(String nombre, String apellido, Especialidad especialidad) {
         this.nombre = nombre;
         this.apellido = apellido;
