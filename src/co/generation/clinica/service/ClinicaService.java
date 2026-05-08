@@ -153,12 +153,15 @@ public class ClinicaService implements Consultable {
     public void cancelarTurno(int idTurno){
 
         Turno t = buscarTurnoPorId(idTurno);
+
         if(t == null){
             System.out.println("Turno no encontrado");
+            return;
         }
 
         if(t.getEstado() != EstadoTurno.PENDIENTE ){
             System.out.println("no se puede cancelar un turno ya atendido");
+            return;
         }
         t.setEstado(EstadoTurno.CANCELADO);
         System.out.println("turno cancelado.");
@@ -169,6 +172,7 @@ public class ClinicaService implements Consultable {
 
         if(t == null){
             System.out.println("Turno no encontrado");
+            return;
         }
         t.setEstado(nuevo);
         System.out.println("Estado fue actualizado con exito: " + nuevo);
@@ -212,11 +216,10 @@ public class ClinicaService implements Consultable {
         List<Turno> res = new ArrayList<>();
 
         for(Turno t : turnos){
-            if(t.getFechaHora().equals(fecha)){
+            if(t.getFechaHora().toLocalDate().isEqual(fecha)){
                 res.add(t);
             }
         }
         return res;
     }
-
 }

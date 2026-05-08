@@ -10,7 +10,13 @@ public class Paciente implements Registrable {
     private String apellido;
     private String telefono;
 
-    //constructor registrar desde el menú esto se usa par avalidar y evitar espacios en blaco con trim
+    //constructor csv
+    public Paciente(int id, String cedula, String nombre, String apellido, String telefono) {
+        this(cedula, nombre, apellido, telefono);
+        this.id = id;
+    }
+
+    //constructor modulo
     public Paciente(String cedula, String nombre, String apellido, String telefono) {
         setCedula(cedula);
         setNombre(nombre);
@@ -18,83 +24,123 @@ public class Paciente implements Registrable {
         setTelefono(telefono);
     }
 
-    public Paciente(int id, String cedula, String nombre, String apellido, String telefono) {
-        this.id = id;
-        setCedula(cedula);
-        setNombre(nombre);
-        setApellido(apellido);
-        setTelefono(telefono);
+    public int getId() {
+        return id;
     }
 
-    public int getId() { return id; }
-    public String getCedula() { return cedula; }
-    public String getNombre() { return nombre; }
-    public String getApellido() { return apellido; }
-    public String getTelefono() { return telefono; }
+    public String getCedula() {
+        return cedula;
+    }
 
-    //este set es el de validacion por id
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
     public void setCedula(String cedula) {
+
         if (cedula == null || cedula.trim().isEmpty()) {
-            throw new IllegalArgumentException("la cedula no puede estar vacia.");
+
+            throw new IllegalArgumentException(
+                    "La cédula no puede estar vacía."
+            );
         }
+
         this.cedula = cedula.trim();
-//aqui no debe estar el espacio en blacno = trim
     }
 
     public void setNombre(String nombre) {
+
         if (nombre == null || nombre.trim().isEmpty()) {
-            throw new IllegalArgumentException("el nombre no puede estar vacio.");
+
+            throw new IllegalArgumentException(
+                    "El nombre no puede estar vacío."
+            );
         }
+
         this.nombre = nombre.trim();
     }
 
     public void setApellido(String apellido) {
+
         if (apellido == null || apellido.trim().isEmpty()) {
-            throw new IllegalArgumentException("el apellido no puede estar vacio.");
+
+            throw new IllegalArgumentException(
+                    "El apellido no puede estar vacío."
+            );
         }
+
         this.apellido = apellido.trim();
     }
 
     public void setTelefono(String telefono) {
-        if (telefono == null || !telefono.matches("^[0-9]{7,10}$")) {
+
+        if (telefono == null ||
+                !telefono.matches("^[0-9]{7,10}$")) {
+
             throw new IllegalArgumentException(
-                    "el telefono debe contener solo digitos.");
+                    "El teléfono debe contener entre 7 y 10 dígitos."
+            );
         }
-        this.telefono = telefono;
+
+        this.telefono = telefono.trim();
     }
 
     @Override
     public String getDatosRegistro() {
-        return this.toString();
+
+        return toString();
     }
 
     @Override
     public boolean esValido() {
-        return cedula != null && !cedula.trim().isEmpty()
-                && nombre != null && !nombre.trim().isEmpty()
-                && apellido != null && !apellido.trim().isEmpty()
-                && telefono != null && telefono.matches("^[0-9]{7,10}$");
+
+        return cedula != null
+                && !cedula.isBlank()
+                && nombre != null
+                && !nombre.isBlank()
+                && apellido != null
+                && !apellido.isBlank()
+                && telefono != null
+                && telefono.matches("^[0-9]{7,10}$");
     }
+
 
     @Override
     public boolean equals(Object obj) {
+
         if (this == obj) return true;
+
         if (!(obj instanceof Paciente)) return false;
+
         Paciente other = (Paciente) obj;
-        return this.cedula.equals(other.cedula);
+
+        return cedula.equals(other.cedula);
     }
 
     @Override
     public int hashCode() {
-        return cedula != null ? cedula.hashCode() : 0;
+
+        return cedula.hashCode();
     }
 
     @Override
     public String toString() {
-        return nombre + " " + apellido + " - " + cedula + " - " + telefono;
+
+        return nombre + " "
+                + apellido + " - "
+                + cedula + " - "
+                + telefono;
     }
 }
