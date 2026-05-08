@@ -35,7 +35,17 @@ public class ClinicaService implements Consultable {
     List<Medico> medicos = new ArrayList<>();
     List<Turno> turnos = new ArrayList<>();
 
+    public List<Paciente> getPacientes() {
+        return pacientes;
+    }
 
+    public List<Medico> getMedicos() {
+        return medicos;
+    }
+
+    public List<Turno> getTurnos() {
+        return turnos;
+    }
 
     //Pacientes format
 
@@ -177,17 +187,36 @@ public class ClinicaService implements Consultable {
     //interfaces consultable
     @Override
     public List<Turno> buscarPorPaciente(Paciente paciente) {
+        List<Turno> res = new ArrayList<>();
 
-        return List.of();
+        for(Turno t : turnos){
+            if(t.getPaciente().equals(paciente)){
+                res.add(t);
+                }
+        }
+        return res;
     }
     @Override
     public List<Turno> buscarPorMedico(Medico medico) {
-        return List.of();
+        List<Turno> res = new ArrayList<>();
+
+        for(Turno t : turnos){
+            if(t.getMedico().equals(medico)){
+                res.add(t);
+            }
+        }
+        return res;
     }
     @Override
     public List<Turno> listarTurnosDelDia(LocalDate fecha) {
-        return List.of();
-    }
+        List<Turno> res = new ArrayList<>();
 
+        for(Turno t : turnos){
+            if(t.getFechaHora().equals(fecha)){
+                res.add(t);
+            }
+        }
+        return res;
+    }
 
 }

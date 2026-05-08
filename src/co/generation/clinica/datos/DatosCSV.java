@@ -5,6 +5,7 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
 public class DatosCSV {
     private static final String DIR = "datos/";
     private static final String F_PACIENTES = DIR + "pacientes.csv";
@@ -51,8 +52,7 @@ public class DatosCSV {
                 String linea;
                 while ((linea = br.readLine()) != null) {
                     if (linea.isBlank()) continue;
-// formato: id,cedulaPaciente,nombreMedico,apellidoMedico,fechaHora,est
-                    ado
+// formato: id,cedulaPaciente,nombreMedico,apellidoMedico,fechaHora,estado
                     String[] p = linea.split(",", -1);
                     Paciente pac = servicio.buscarPorCedula(p[1].trim());
                     Medico med = servicio.buscarPorNombreApellido(
