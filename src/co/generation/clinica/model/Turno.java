@@ -10,7 +10,7 @@ public class Turno {
     private EstadoTurno estado;
 
     //constructor CSV
-    public Turno(int id, Paciente paciente, Medico medico, LocalDateTime fechaHora, EstadoTurno estado) {
+    public Turno(Paciente paciente, Medico medico, LocalDateTime fechaHora) {
         this.id = id;
         this.paciente = paciente;
         this.medico = medico;

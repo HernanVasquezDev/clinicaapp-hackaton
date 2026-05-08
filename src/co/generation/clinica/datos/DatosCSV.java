@@ -140,11 +140,9 @@ public class DatosCSV {
                 }
 
                 Turno turno = new Turno(
-                        Integer.parseInt(p[0].trim()),
                         paciente,
                         medico,
-                        LocalDateTime.parse(p[4].trim(), FMT),
-                        EstadoTurno.valueOf(p[5].trim())
+                        LocalDateTime.parse(p[4].trim(), FMT)
                 );
 
                 servicio.getTurnos().add(turno);
