@@ -136,23 +136,30 @@ public class ClinicaService implements Consultable {
     }
 
     //Turnos
-    public void AsignarTurno(Turno t){
+    public void asignarTurno(Turno t){
 
         if(t.getPaciente() == null || t.getMedico() == null){
-            System.out.println("Paciente o Medico no registrado");
+
+            System.out.println("Paciente o medico no registrado");
+            return;
         }
 
         if(turnos.contains(t)){
-            System.out.println("El medico ya tiene un turno asignado en este horario");
+
+            System.out.println("El medico ya tiene un turno");
+            return;
         }
 
         t.setId(generarIdTurno());
+
         turnos.add(t);
-        System.out.println("Turno asignado con exito." + t);
+
+        System.out.println("Turno asignado: " + t);
     }
     public void cancelarTurno(int idTurno){
 
         Turno t = buscarTurnoPorId(idTurno);
+
 
         if(t == null){
             System.out.println("Turno no encontrado");
@@ -179,8 +186,9 @@ public class ClinicaService implements Consultable {
     }
 
     private Turno buscarTurnoPorId(int idTurno) {
-
+        System.out.println("Buscando turno por id: " + idTurno);
         for(Turno t : turnos){
+            System.out.println("turno existente" + t.getId());
             if(t.getId() == idTurno){
                 return t;
             }

@@ -134,7 +134,7 @@ public class Main {
                         );
 
 
-                        servicio.AsignarTurno(turno);
+                        servicio.asignarTurno(turno);
                     }
 
                     case 4 -> {
