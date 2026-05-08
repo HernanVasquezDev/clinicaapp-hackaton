@@ -91,10 +91,9 @@ public class Medico implements Registrable {
 
     @Override
     public String toString() {
-        return "Medico{" +
-                "nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", especialidad=" + especialidad +
-                '}';
+        return "Dr. " +
+                nombre + '\'' +
+                apellido + '\'' +
+                " - " + especialidad;
     }
 }
