@@ -76,8 +76,14 @@ public class Turno {
         }
         this.estado = estado;
     }
+    //esta asignacion nos permite verificar que el medico no este asignado dos veces al mismo turno
+    public boolean esMismoHorario(Turno otro){
+        return medico.equals(otro.getMedico())
+                && fechaHora.equals(otro.getFechaHora());
+    }
 
     @Override
+    //controlar que el medico no este asignado dos veces al mismo turno en la misma hora.
     public boolean equals(Object obj) {
         if(this == obj)return true;
         if(!(obj instanceof Turno))return false;
@@ -88,4 +94,11 @@ public class Turno {
             && this.fechaHora.equals(other.fechaHora);
     }
 
+    @Override
+    public String toString() {
+        return "[" + estado + "]"
+        + paciente + "| -"
+               + "-|" + medico.getNombre() + " " + medico.getApellido()
+        + "(" + medico.getEspecialidad() + ") |" + fechaHora;
+    }
 }

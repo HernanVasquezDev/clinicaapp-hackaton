@@ -1,5 +1,7 @@
 package co.generation.clinica.model;
 
+import co.generation.clinica.interfaces.Registrable;
+
 public class Medico implements Registrable {
 
     private int id;
@@ -60,6 +62,16 @@ public class Medico implements Registrable {
         } else {
             this.especialidad = especialidad;
         }
+    }
+
+    @Override
+    public String getDatosRegistro(){
+        return "Dr." + nombre + " " + apellido + " - " + especialidad;
+    }
+
+    @Override
+    public boolean esValido(){
+        return nombre != null && apellido != null && especialidad != null;
     }
 
     @Override
